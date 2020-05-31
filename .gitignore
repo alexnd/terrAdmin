@@ -12,6 +12,7 @@ TShock*
 /logs/*
 !/logs/.gitkeep
 *.sh
+*.bat
 
 # Log files
 npm-debug.log*

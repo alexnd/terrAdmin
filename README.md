@@ -8,10 +8,13 @@ This application expose Terraria/tShock things to user allowing control game ser
 - clone [this](https://github.com/alexnd/terrAdmin) repo
 - `npm install`
 - `npm build`
-- `npm run install_terrariaserver`
+- `npm run install-terraria-server` or `npm run install-tshock`
 
 Review and make corrections to `config.js` and `server.cfg`
-You may need to change default credetials (admin, 123456), set ports, world file, `autocreate` directive to generate new world
+
+You may need to change default credetials (admin, 123456), set ports, world file
+
+You should place existsing `.wld` files in `Worlds` directory or set configfile `autocreate` directive to generate new world
 
 ## Run
 
@@ -27,18 +30,34 @@ You may need to change default credetials (admin, 123456), set ports, world file
 - [TShock](https://github.com/Pryaxis/TShock/releases/tag/v4.4.0-pre8)
 - [TShock command line parameters](https://tshock.readme.io/docs/command-line-parameters)
 
-## TODO
+## Barebone scenario to run Terraria server
 
-- work/Dockerfile
-
-  ```
-  docker build -t terrAdmin .
-  docker run terrAdmin
-  ```
-
-- Add barebone scenario (`sudo apt install mono-runtime -y`)
+### Linux
 
 ```
-mono ./TerrariaServer/1404/Linux/TerrariaServer.exe -config ../../../server.cfg
-mono ./TerrariaServer/1404/Mac/Terraria\ Server.app/Contents/MacOS/TerrariaServer.exe -config ../../../../../server.cfg
+sudo apt install mono-runtime -y
+mono ./TerrariaServer/1404/Linux/TerrariaServer.exe -config ./server.cfg
+```
+
+### Mac
+
+[Install Mono for Mac](https://www.mono-project.com/docs/getting-started/install/mac/)
+
+```
+mono ./TerrariaServer/1404/Mac/Terraria\ Server.app/Contents/MacOS/TerrariaServer.exe -config ./server.cfg
+```
+
+### Windows
+
+Create runnable `.bat` file with next content:
+
+```
+TerrariaServer\1404\Windows\TerrariaServer.exe -config server.cfg
+```
+
+## Docker way (under construction)
+
+```
+docker build -t terradmin .
+docker run terradmin
 ```
