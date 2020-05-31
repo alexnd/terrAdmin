@@ -20,13 +20,17 @@
     "start": "node app.js --open",
     "build": "node build.js",
     "install-terraria-server": "node install_terrariaserver.js",
-    "install-tshock": "node install_tshock.js"
+    "install-tshock": "node install_tshock.js",
+    "postinstall": "node postinstall.js"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/alexnd/terrAdmin.git"
+    "type": "git",
+    "url": "https://github.com/alexnd/terrAdmin.git"
   },
-  "keywords": ["Terraria", "Admin"],
+  "keywords": [
+    "Terraria",
+    "Admin"
+  ],
   "author": "Alexnd",
   "license": "ISC"
 }
