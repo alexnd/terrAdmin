@@ -1,6 +1,6 @@
 {
   "name": "terrAdmin",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Terraria game server web admin panel (by default on 7878 port)",
   "main": "app.js",
   "dependencies": {
