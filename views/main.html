@@ -36,7 +36,9 @@
             <p id="status_label" class="card-text">
               {{status}}
             </p>
-            <p id="world_label" class="card-text" style="display:none">World: <i id="world_name"></i></p>
+            <p id="world_label" class="card-text" style="display:none">
+              World: <i id="world_name"></i>
+            </p>
             {{#if offline}}
               <a href="#" class="btn btn-primary" id="a_start">Start</a>
               <a href="#" class="btn btn-primary" id="a_stop" style="display:none">Stop</a>
@@ -71,11 +73,15 @@
             </div>
           </div>
           <div class="tab-pane fade p-3" id="help" role="tabpanel" aria-labelledby="help-tab">
-            <h5 class="card-title">Help</h5>
             <div class="card-text h-100 scrollable-content">
               <pre id="help-content"></pre>
             </div>
-            <a href="https://terraria.org" target="_blank" class="btn btn-primary">Check Official Terraria Website</a>
+            <div style="padding:10px">
+              <a href="https://terraria.org" class="btn btn-primary" target="_blank">Official Terraria Website</a>
+              <span style="padding-left:10px">
+                <a href="https://github.com/alexnd/terrAdmin" class="btn btn-secondary" target="_blank">Project Github</a>
+              </span>
+            </div>
           </div>
         </div>
       </div>
