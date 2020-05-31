@@ -20,7 +20,7 @@
     "start": "node app.js --open",
     "build": "node build.js",
     "install-terraria-server": "node install_terrariaserver.js",
-    "install-tshock-server": "node install_tshock.js"
+    "install-tshock": "node install_tshock.js"
   },
   "repository": {
     "type" : "git",
