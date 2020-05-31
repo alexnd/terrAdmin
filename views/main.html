@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div class="card mt-3 tab-card" style="min-width: 800px;">
+        <div class="card-header tab-card-header">
+          <h1>
+            {{title}}
+            <span style="padding-left:50px">
+              <a href="#" class="btn btn-info btn-sm" id="a_restartapp">Restart</a>
+            </span>
+            <span style="padding-left:20px">
+              <a href="/logout" class="btn btn-warning btn-sm">Logout</a>
+            </span>
+          </h1>
+          <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="status-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status" aria-selected="true">Status</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="config-tab" data-toggle="tab" href="#config" role="tab" aria-controls="config" aria-selected="false">Configuration</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="worlds-tab" data-toggle="tab" href="#worlds" role="tab" aria-controls="worlds" aria-selected="false">Worlds</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="logs-tab" data-toggle="tab" href="#logs" role="tab" aria-controls="logs" aria-selected="false">Logs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="help-tab" data-toggle="tab" href="#help" role="tab" aria-controls="help" aria-selected="false">Help</a>
+            </li>
+          </ul>
+        </div>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active p-3" id="status" role="tabpanel" aria-labelledby="status-tab">
+            <h5 class="card-title">Status</h5>
+            <p id="status_label" class="card-text">
+              {{status}}
+            </p>
+            <p id="world_label" class="card-text" style="display:none">World: <i id="world_name"></i></p>
+            {{#if offline}}
+              <a href="#" class="btn btn-primary" id="a_start">Start</a>
+              <a href="#" class="btn btn-primary" id="a_stop" style="display:none">Stop</a>
+            {{else}}
+              <a href="#" class="btn btn-primary" id="a_start" style="display:none">Start</a>
+              <a href="#" class="btn btn-primary" id="a_stop">Stop</a>
+            {{/if}}
+            &nbsp;
+            <a href="#" class="btn btn-primary" id="a_backup">Backup World</a>
+            <div id="c_status"></div>
+          </div>
+          <div class="tab-pane fade p-3" id="config" role="tabpanel" aria-labelledby="config-tab">
+            <h5 class="card-title">Terraria server</h5>
+            <div class="card-text h-100 scrollable-content-half">
+              <pre id="config-content"></pre>
+            </div>
+            <h5 class="card-title" style="margin-top:14px !important">terrAdmin</h5>
+            <div class="card-text h-100 scrollable-content-half">
+              <pre id="app-config-content"></pre>
+            </div>
+          </div>
+          <div class="tab-pane fade p-3" id="worlds" role="tabpanel" aria-labelledby="worlds-tab">
+              <h5 class="card-title">Worlds</h5>
+              <div class="card-text h-100 scrollable-content">
+                <ul id="worldslist"></ul>
+              </div>
+          </div>
+          <div class="tab-pane fade p-3" id="logs" role="tabpanel" aria-labelledby="logs-tab">
+            <h5 class="card-title">Logs</h5>
+            <div class="card-text h-100 scrollable-content">
+              <pre id="logs-content"></pre>
+            </div>
+          </div>
+          <div class="tab-pane fade p-3" id="help" role="tabpanel" aria-labelledby="help-tab">
+            <h5 class="card-title">Help</h5>
+            <div class="card-text h-100 scrollable-content">
+              <pre id="help-content"></pre>
+            </div>
+            <a href="https://terraria.org" target="_blank" class="btn btn-primary">Check Official Terraria Website</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

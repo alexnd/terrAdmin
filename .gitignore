@@ -1,0 +1,30 @@
+.DS_Store
+node_modules
+package-lock.json
+/pub/bootstrap*
+/pub/jquery*
+/TerrariaServer/*
+!/TerrariaServer/.gitkeep
+TerrariaServer.zip
+TShock*
+/Worlds/*
+!/Worlds/.gitkeep
+/logs/*
+!/logs/.gitkeep
+*.sh
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+/work
