@@ -3,7 +3,7 @@
 
 "use strict";
 
-const cfg = require('./config')
+
 const process = require('process')
 const childProcess = require('child_process')
 const os = require('os') 
@@ -16,6 +16,7 @@ const exhbs  = require('express-handlebars')
 const session = require('express-session')
 const zip = require('express-zip')
 const markdown = require('markdown').markdown
+const cfg = require(fs.existsSync('./config-local.js') ? './config-local' : './config')
 
 const terrariaDir = process.env.WORKDIR || cfg.terrariaDir
 const terrariaExe = process.env.EXEFILE || cfg.terrariaExe
