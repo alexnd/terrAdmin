@@ -7,7 +7,6 @@ This application expose Terraria/tShock things to user allowing control game ser
 - get [nodejs with npm](https://nodejs.org/en/download/)
 - clone [this](https://github.com/alexnd/terrAdmin) repo
 - `npm install`
-- `npm build`
 - `npm run install-terraria-server` or `npm run install-tshock`
 
 Review and make corrections to `config.js` and `server.cfg`

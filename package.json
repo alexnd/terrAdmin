@@ -21,7 +21,7 @@
     "build": "node build.js",
     "install-terraria-server": "node install_terrariaserver.js",
     "install-tshock": "node install_tshock.js",
-    "postinstall": "node postinstall.js"
+    "postinstall": "node postinstall.js && npm run build"
   },
   "repository": {
     "type": "git",
