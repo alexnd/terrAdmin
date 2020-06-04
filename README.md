@@ -31,7 +31,7 @@ This application expose Terraria/tShock things to user allowing control game ser
 
 ```
 sudo apt install mono-runtime -y
-mono ./TerrariaServer/1404/Linux/TerrariaServer.exe -config ./server.cfg
+mono ./TerrariaServer/1405/Linux/TerrariaServer.exe -config ./server.cfg
 ```
 
 ### Mac
@@ -39,7 +39,7 @@ mono ./TerrariaServer/1404/Linux/TerrariaServer.exe -config ./server.cfg
 [Install Mono for Mac](https://www.mono-project.com/docs/getting-started/install/mac/)
 
 ```
-mono ./TerrariaServer/1404/Mac/Terraria\ Server.app/Contents/MacOS/TerrariaServer.exe -config ./server.cfg
+mono ./TerrariaServer/1405/Mac/Terraria\ Server.app/Contents/MacOS/TerrariaServer.exe -config ./server.cfg
 ```
 
 ### Windows
@@ -47,7 +47,7 @@ mono ./TerrariaServer/1404/Mac/Terraria\ Server.app/Contents/MacOS/TerrariaServe
 Create runnable `.bat` file with next content:
 
 ```
-TerrariaServer\1404\Windows\TerrariaServer.exe -config server.cfg
+TerrariaServer\1405\Windows\TerrariaServer.exe -config server.cfg
 ```
 
 ## Docker way (under construction)
