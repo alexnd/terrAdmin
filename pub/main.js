@@ -45,7 +45,7 @@
       $.get('/start').then(function (res) {
         $('#c_status').html(res);
         if (res.indexOf('started') !== -1) {
-          $('#status_label').html('RUNNING');
+          $('#status_label').html('<span class="badge badge-success">RUNNING</span>');
         }
         $('#a_start').hide();
         $('#a_stop').show();
@@ -59,7 +59,7 @@
       $.get('/stop').then(function (res) {
         $('#c_status').html(res);
         if (res.indexOf('stopped') !== -1) {
-          $('#status_label').html('STOPPED');
+          $('#status_label').html('<span class="badge badge-danger">STOPPED</span>');
         }
         $('#a_stop').hide();
         $('#a_start').show();
@@ -71,9 +71,12 @@
     $('#a_backup').click(function (event) {
       event.preventDefault();
       window.open('/backup');
+      return false;
     });
     $('#a_restartapp').click(function (event) {
       event.preventDefault();
+      $('#confirm_restartapp').modal('show')
+/*
       $.get('/restartapp').then(function (res) {
         $('body').html('<div class="container"><div class="row justify-content-center align-items-center" style="height:100vh">Restarting application...</div></div>');
         setTimeout(function() {
@@ -82,6 +85,29 @@
       }).catch(function (err) {
         console.log('*[error]', err);
       });
+      */
+      return false;
+    });
+    $('#a_load_cfg').click(function (event) {
+      event.preventDefault();
+      $.get('/loadcfg').then(function (res) {
+        console.log(res)
+      }).catch(function (err) {
+        console.log('*[error]', err);
+      });
+      return false;
+    });
+    $('#a_save_cfg').click(function (event) {
+      event.preventDefault();
+      return false;
+    });
+    $('#a_load_cfgapp').click(function (event) {
+      event.preventDefault();
+      return false;
+    });
+    $('#a_save_cfgapp').click(function (event) {
+      event.preventDefault();
+      return false;
     });
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       if (e && e.target) {
@@ -100,6 +126,7 @@
     $.getJSON('/stats').then(function (res) {
       status = res;
       config = res.configFile;
+      $('#c_version').text(res.version);
       $('#world_name').text(res.world);
       $('#world_label').show();
       if (res.worlds && res.worlds.length) {

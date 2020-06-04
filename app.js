@@ -16,15 +16,17 @@ const exhbs  = require('express-handlebars')
 const session = require('express-session')
 const zip = require('express-zip')
 const markdown = require('markdown').markdown
-const cfg = require(fs.existsSync('./config-local.js') ? './config-local' : './config')
+const configLocal = fs.existsSync('./config-local.js')
+const cfg = require(configLocal ? './config-local' : './config')
+const packageConfig = require('./package.json')
 
 const terrariaDir = process.env.WORKDIR || cfg.terrariaDir
 const terrariaExe = process.env.EXEFILE || cfg.terrariaExe
 const sessionSecret = process.env.SESSECRET || cfg.sessionSecret
 const staticPath = process.env.STATICPATH || cfg.staticPath
 const configFile = process.env.CONFIGFILE || 'server.cfg'
-let worldFile = process.env.WORLDFILE || cfg.worldFile
 
+var worldFile = ''
 var authCode = ''
 var tPs = null // Terraria child process
 var exitState = false
@@ -118,13 +120,11 @@ const checkAuth = (req, res, next) => {
 // routes
 
 ex.get('/', checkAuth, (req, res) => {
-  const status = tPs ? `RUNNING, superadmin: /auth ${authCode}` : 'STOPPED'
   res.render('main', {
     title: process.title,
     online: tPs,
     offline: !tPs,
     authCode,
-    status,
     initData: JSON.stringify({
       user: !!req.session.user
     })
@@ -243,6 +243,7 @@ ex.get('/stats', checkAuth, (req, res) => {
       res.json({error: err})
     } else {
       res.json({
+        version: packageConfig.version,
         status: tPs,
         authCode: authCode,
         world: worldFile,
@@ -283,7 +284,7 @@ ex.get('/logs', checkAuth, (req, res) => {
 })
 
 ex.get('/config', checkAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, 'config.js'))
+  res.sendFile(path.join(__dirname, configLocal ? 'config-local.js' : 'config.js'))
 })
 
 ex.get('/help', (req, res) => {
@@ -402,6 +403,17 @@ function listTerrariaWorlds(cb) {
   })
 }
 
+function listTerrariaLogs(cb) {
+  fs.readdir(path.join(__dirname, 'logs'), (err, files) => {
+    if (err) {
+      console.log('*err', err)
+      cb('Cannot read dir')
+      return
+    }
+    cb(null, files.filter(file => file.match(/\.log$/)))
+  })
+}
+
 function updateTerrariaWorldConfig(cb) {
   const configPath = path.join(__dirname, configFile)
   fs.readFile(configPath, 'utf8', (err, data) => {
@@ -421,7 +433,8 @@ function updateTerrariaWorldConfig(cb) {
 
 // main loop
 function update() {
-
+// check ps list for existing game server process
+// settimeout
 }
 
 const testRes = (req, res) => {
@@ -453,31 +466,4 @@ const tsToSqldate = _v => {
   ((d.getHours() < 10) ? ('0' + d.getHours()) : d.getHours()) + ':' +
   ((d.getMinutes() < 10) ? ('0' + d.getMinutes()) : d.getMinutes()) + ':' + 
   ((d.getSeconds() < 10) ? ('0' + d.getSeconds()) : d.getSeconds())
-}
-
-// silly, need reason to avoid Object.clone:)
-function clone(src) {
-  var dest = {}
-  for (var p in src) {
-    if (!src.hasOwnProperty(p)) continue
-    dest[p] = src[p]
-  }
-  return dest
-}
-
-const toStr = Object.prototype.toString
-
-function trimStr(s) {
-  return s.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g, '').replace(/\s+/g, ' ')
-}
-
-function capitalize(s) {
-  return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
-}
-
-function uuid() {
-  const s = () => {
-    return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-  };
-  return (s() + s() + '-' + s() + '-' + s() + '-' + s() + '-' + s() + s() + s());
 }

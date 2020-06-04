@@ -18,7 +18,6 @@ module.exports = {
 
   sessionSecret: 'fooBar42',
   staticPath: 'pub',
-  worldFile: 'NewWorld.wld',
   users: [
     {login: 'admin', password: '123456'}
   ]

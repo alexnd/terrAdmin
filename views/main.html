@@ -3,71 +3,125 @@
     <div class="col-6">
       <div class="card mt-3 tab-card" style="min-width: 800px;">
         <div class="card-header tab-card-header">
-          <h1>
-            {{title}}
+          <div>
+            <h2 class="h3 d-inline-block">{{title}}</h2>
+            <span class="badge badge-pill badge-secondary align-top" id="c_version"></span>
             <span style="padding-left:50px">
-              <a href="#" class="btn btn-info btn-sm" id="a_restartapp">Restart</a>
+              <a href="#" class="btn btn-info btn-sm" id="a_restartapp">
+                Restart <i class="icon icon-reload">&nbsp;</i>
+              </a>
             </span>
             <span style="padding-left:20px">
-              <a href="/logout" class="btn btn-warning btn-sm">Logout</a>
+              <a href="/logout" class="btn btn-warning btn-sm">
+                Logout <i class="icon icon-logout">&nbsp;</i>
+              </a>
             </span>
-          </h1>
+          </div>
           <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" id="status-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status" aria-selected="true">Status</a>
+              <a class="nav-link active" id="status-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status" aria-selected="true">
+                <i class="icon icon-status">&nbsp;</i>
+                Status
+              </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="config-tab" data-toggle="tab" href="#config" role="tab" aria-controls="config" aria-selected="false">Configuration</a>
+              <a class="nav-link" id="config-tab" data-toggle="tab" href="#config" role="tab" aria-controls="config" aria-selected="false">
+                <i class="icon icon-setup">&nbsp;</i>
+                Setup
+              </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="worlds-tab" data-toggle="tab" href="#worlds" role="tab" aria-controls="worlds" aria-selected="false">Worlds</a>
+              <a class="nav-link" id="logs-tab" data-toggle="tab" href="#logs" role="tab" aria-controls="logs" aria-selected="false">
+                <i class="icon icon-list">&nbsp;</i>
+                Logs
+              </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="logs-tab" data-toggle="tab" href="#logs" role="tab" aria-controls="logs" aria-selected="false">Logs</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="help-tab" data-toggle="tab" href="#help" role="tab" aria-controls="help" aria-selected="false">Help</a>
+              <a class="nav-link" id="help-tab" data-toggle="tab" href="#help" role="tab" aria-controls="help" aria-selected="false">
+                <i class="icon icon-question">&nbsp;</i>
+                Help
+              </a>
             </li>
           </ul>
         </div>
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active p-3" id="status" role="tabpanel" aria-labelledby="status-tab">
             <h5 class="card-title">Status</h5>
-            <p id="status_label" class="card-text">
-              {{status}}
-            </p>
+            <div id="status_label" class="card-text">
+              {{#if offline}}
+              <span class="badge badge-danger">
+                STOPPED
+              {{else}}
+              <span class="badge badge-success">
+                RUNNING
+              {{/if}}
+              </span>
+            </div>
             <p id="world_label" class="card-text" style="display:none">
-              World: <i id="world_name"></i>
+              <div class="input-group mb-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">World:</div>
+                </div>
+                <span type="text" class="form-control" id="world_name">
+                </span>
+                <a href="#" class="btn btn-outline-secondary" id="a_backup" style="margin-left:5px">
+                  <i class="icon icon-load">&nbsp;</i>
+                </a>
+              </div>
             </p>
             {{#if offline}}
-              <a href="#" class="btn btn-primary" id="a_start">Start</a>
-              <a href="#" class="btn btn-primary" id="a_stop" style="display:none">Stop</a>
+              <a href="#" class="btn btn-primary" id="a_start">
+                Start <i class="icon icon-start">&nbsp;</i>
+              </a>
+              <a href="#" class="btn btn-primary" id="a_stop" style="display:none">
+                Stop <i class="icon icon-stop">&nbsp;</i>
+              </a>
             {{else}}
-              <a href="#" class="btn btn-primary" id="a_start" style="display:none">Start</a>
-              <a href="#" class="btn btn-primary" id="a_stop">Stop</a>
+              <a href="#" class="btn btn-primary" id="a_start" style="display:none">
+                Start
+                <i class="icon icon-start">&nbsp;</i>
+              </a>
+              <a href="#" class="btn btn-primary" id="a_stop">
+                Stop
+                <i class="icon icon-stop">&nbsp;</i>
+              </a>
             {{/if}}
-            &nbsp;
-            <a href="#" class="btn btn-primary" id="a_backup">Backup World</a>
-            <div id="c_status"></div>
+            <div id="c_status" style="margin-bottom:15px"></div>
+            <h5 class="card-title">Worlds</h5>
+            <div class="card-text h-100 scrollable-content">
+              <ul id="worldslist"></ul>
+            </div>
           </div>
           <div class="tab-pane fade p-3" id="config" role="tabpanel" aria-labelledby="config-tab">
-            <h5 class="card-title">Terraria server</h5>
+            <h5 class="card-title">
+              Terraria server
+              <span>
+                <a href="#" id="a_load_cfg" title="Load server.cfg" class="icon icon-reload"></a>
+              </span>
+              <span>
+                <a href="#" id="a_save_cfg" title="Save server.cfg" class="icon icon-save"></a>
+              </span>
+            </h5>
             <div class="card-text h-100 scrollable-content-half">
               <pre id="config-content"></pre>
             </div>
-            <h5 class="card-title" style="margin-top:14px !important">terrAdmin</h5>
+            <h5 class="card-title" style="margin-top:14px !important">
+              terrAdmin
+              <span>
+                <a href="#" id="a_load_cfgapp" title="Load config.js" class="icon icon-reload"></a>
+              </span>
+              <span>
+                <a href="#" id="a_save_cfgapp" title="Save config.js" class="icon icon-save"></a>
+              </span>
+            </h5>
             <div class="card-text h-100 scrollable-content-half">
               <pre id="app-config-content"></pre>
             </div>
           </div>
-          <div class="tab-pane fade p-3" id="worlds" role="tabpanel" aria-labelledby="worlds-tab">
-              <h5 class="card-title">Worlds</h5>
-              <div class="card-text h-100 scrollable-content">
-                <ul id="worldslist"></ul>
-              </div>
-          </div>
           <div class="tab-pane fade p-3" id="logs" role="tabpanel" aria-labelledby="logs-tab">
-            <h5 class="card-title">Logs</h5>
+            <h5 class="card-title">
+              Logs
+            </h5>
             <div class="card-text h-100 scrollable-content">
               <pre id="logs-content"></pre>
             </div>
@@ -76,15 +130,39 @@
             <div class="card-text h-100 scrollable-content">
               <pre id="help-content"></pre>
             </div>
-            <div style="padding:10px">
-              <a href="https://terraria.org" class="btn btn-primary" target="_blank">Official Terraria Website</a>
-              <span style="padding-left:10px">
-                <a href="https://github.com/alexnd/terrAdmin" class="btn btn-secondary" target="_blank">Project Github</a>
+            <div style="padding-top:15px">
+              <a href="https://terraria.org" class="btn btn-primary" target="_blank">
+                <i class="icon icon-home">&nbsp;</i>
+                Official Terraria Website
+              </a>
+              <span style="margin-left:10px">
+                <a href="https://terraria.gamepedia.com/Terraria_Wiki" class="btn btn-info" target="_blank">
+                  <i class="icon icon-search">&nbsp;</i>
+                  Terraria Wiki
+                </a>
+              </span>
+              <span style="margin-left:10px">
+                <a href="https://github.com/alexnd/terrAdmin" class="btn btn-secondary" target="_blank">
+                  <i class="icon icon-github">&nbsp;</i>
+                  Project Github
+                </a>
               </span>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="confirm_restartapp">
+  <div class="modal-dialog" role="document">
+    <div class="modal-body">
+      <h5>Confirmation</h5>
+      <p>Really reload app? Running server will drop.</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      <button type="button" class="btn btn-primary">Reload</button>
     </div>
   </div>
 </div>

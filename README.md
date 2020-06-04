@@ -1,6 +1,6 @@
 # terrAdmin
 
-This application expose Terraria/tShock things to user allowing control game server with web GUI
+This application expose Terraria/tShock things to user allowing control game server over web GUI
 
 ## Setup
 
@@ -9,7 +9,7 @@ This application expose Terraria/tShock things to user allowing control game ser
 - `npm install`
 - `npm run install-terraria-server` or `npm run install-tshock`
 
-Review and make corrections to `config.js` and `server.cfg`
+Review and make corrections to `config-local.js` and `server.cfg`
 
 You may need to change default credetials (admin, 123456), set ports, world file
 
@@ -19,7 +19,7 @@ You should place existsing `.wld` files in `Worlds` directory or set configfile 
 
 - in terminal `npm start`
 - open in web browser [127.0.0.1:7878](http://127.0.0.1:7878)
-- login credentials are in `config.js` in `users[]`
+- login credentials are in `config-local.js` in `users[]`
 
 ## Links
 
