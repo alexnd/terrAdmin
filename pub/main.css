@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'fontellomin';
-  src: url('/fontellomin.eot?46545468');
-  src: url('/fontellomin.eot?46545468#iefix') format('embedded-opentype'),
-       url('/fontellomin.woff2?46545468') format('woff2'),
-       url('/fontellomin.woff?46545468') format('woff'),
-       url('/fontellomin.ttf?46545468') format('truetype'),
-       url('/fontellomin.svg?46545468#fontellomin') format('svg');
+  src: url('/fontellomin.eot?8173197');
+  src: url('/fontellomin.eot?8173197#iefix') format('embedded-opentype'),
+       url('/fontellomin.woff2?8173197') format('woff2'),
+       url('/fontellomin.woff?8173197') format('woff'),
+       url('/fontellomin.ttf?8173197') format('truetype'),
+       url('/fontellomin.svg?8173197#fontellomin') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -30,9 +30,10 @@
   -moz-osx-font-smoothing: grayscale;
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
+
 .icon-delete:before { content: '\e800'; } /* '' */
 .icon-cancel:before { content: '\e801'; } /* '' */
-.icon-info:before { content: '\e802'; } /* '' */
+.icon-alert:before { content: '\e802'; } /* '' */
 .icon-edit:before { content: '\e803'; } /* '' */
 .icon-save:before { content: '\e804'; } /* '' */
 .icon-upload:before { content: '\e805'; } /* '' */
@@ -50,6 +51,7 @@
 .icon-home:before { content: '\e811'; } /* '' */
 .icon-github:before { content: '\e812'; } /* '' */
 .icon-login:before { content: '\e813'; } /* '' */
+.icon-info:before { content: '\e814'; } /* '' */
 .icon-spin:before { content: '\e838'; } /* '' */
 .icon-copy:before { content: '\f0c5'; } /* '' */
 .icon-list:before { content: '\f0ca'; } /* '' */

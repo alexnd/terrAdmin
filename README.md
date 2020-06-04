@@ -4,22 +4,18 @@ This application expose Terraria/tShock things to user allowing control game ser
 
 ## Setup
 
-- get [nodejs with npm](https://nodejs.org/en/download/)
-- clone [this](https://github.com/alexnd/terrAdmin) repo
+- Get [nodejs with npm](https://nodejs.org/en/download/)
+- Clone [this](https://github.com/alexnd/terrAdmin) repo
 - `npm install`
 - `npm run install-terraria-server` or `npm run install-tshock`
-
-Review and make corrections to `config-local.js` and `server.cfg`
-
-You may need to change default credetials (admin, 123456), set ports, world file
-
-You should place existsing `.wld` files in `Worlds` directory or set configfile `autocreate` directive to generate new world
+- Review and make corrections to `config.js` and `server.cfg`, you may need to change *default credentials* (**admin**, **123456**), set ports, world file, etc
+- You should place existsing `.wld` files in `Worlds` directory or set configfile `autocreate` directive to generate new world
 
 ## Run
 
-- in terminal `npm start`
-- open in web browser [127.0.0.1:7878](http://127.0.0.1:7878)
-- login credentials are in `config-local.js` in `users[]`
+- Type in terminal `npm start`
+- Open in web browser [127.0.0.1:7878](http://127.0.0.1:7878)
+- Login credentials stored in `config.js` file in `users[]` array
 
 ## Links
 
@@ -60,3 +56,14 @@ TerrariaServer\1404\Windows\TerrariaServer.exe -config server.cfg
 docker build -t terradmin .
 docker run terradmin
 ```
+
+## TODO
+
+- Save/load configs
+- Logfiles selector
+- Load/stash/unstash for selected map
+- Postinstall generation of .bat/.sh (for barebone run)
+- Public page on [github pages](https://pages.github.com/) and site button on help tab
+- Autogenerate world feature (it possible, was tested, proven)
+- PM2 instructions to setup and keep project running on dedicated pc
+- Separate dockers for terrAdmin and game server, resolve admin-server control
