@@ -3,7 +3,6 @@
 
 "use strict";
 
-
 const process = require('process')
 const childProcess = require('child_process')
 const os = require('os') 
@@ -33,6 +32,7 @@ var exitState = false
 var logTimestamp = null
 var authorizations = {}
 var configFileData = ''
+var logFile = ''
 
 const isWin = /^win/i.test(os.platform())
 const isMac = /^dar/i.test(os.platform())
@@ -262,7 +262,10 @@ ex.get('/logs', checkAuth, (req, res) => {
       let logPath = ''
       files.forEach(file => {
         if (file !== '.gitkeep') {
-          if (!logPath) logPath = path.join(logsPath, file)
+          if (!logPath) {
+            logFile = file
+            logPath = path.join(logsPath, file)
+          }
         }
       })
       if (logPath) {
@@ -282,6 +285,22 @@ ex.get('/logs', checkAuth, (req, res) => {
     res.send('no running server')
   }
 })
+
+ex.get('/logfiles', checkAuth, (req, res) => {
+  const logsPath = path.join(__dirname, 'logs')
+  fs.readdir(logsPath, (err, files) => {
+    if (err) {
+      res.json({current: logFile, error: err.message || 'unknown error'})
+      return
+    }
+    res.json({
+      current: logFile,
+      logdir: files.filter(f => f.match(/\.log$/i) && f !== logFile)
+    })
+  })
+})
+
+
 
 ex.get('/config', checkAuth, (req, res) => {
   res.sendFile(path.join(__dirname, configExist ? 'config.js' : 'config-example.js'))

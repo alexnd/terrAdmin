@@ -120,10 +120,13 @@
           </div>
           <div class="tab-pane fade p-3" id="logs" role="tabpanel" aria-labelledby="logs-tab">
             <h5 class="card-title">
-              Logs
+              Logfile <i id="logs-current-file"></i>
               <a href="#" id="a_changelog" title="Search for another logfile">
                 <i class="icon icon-search">&nbsp;</i>
               </a>
+              <span id="c_select_logfile" style="margin-left:20px; display:none">
+                <select class="custom-select" id="select-logfile"></select>
+              </span>
             </h5>
             <div class="card-text h-100 scrollable-content">
               <pre id="logs-content"></pre>

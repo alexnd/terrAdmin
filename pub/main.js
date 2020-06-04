@@ -114,7 +114,11 @@
     });
     $('#a_changelog').click(function (event) {
       event.preventDefault();
+      $('#c_select_logfile').show();
       return false;
+    });
+    $('#select-logfile').change(function() {
+      $('#c_select_logfile').hide();
     });
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       if (e && e.target) {
@@ -170,11 +174,23 @@
   }
 
   function _logs() {
-    $.get('/logs').then(function (res) {
-      $('#logs-content').html(res);
+    $.get('/logfiles').then(function (res) {
+      console.log(res)
+      $('#logs-current-file').text(res.current);
+      $('#select-logfile').empty();
+      if (res.logdir) {
+        res.logdir.forEach(function(file) {
+          $('#select-logfile').append('<option value="' + file + '">' + file + '</option>');
+        });
+      }
+      $.get('/logs').then(function (res) {
+        $('#logs-content').html(res);
+      }).catch(function (err) {
+        console.log('*[error]', err);
+      });
     }).catch(function (err) {
       console.log('*[error]', err);
-    })
+    });
   }
   
   function _help() {
