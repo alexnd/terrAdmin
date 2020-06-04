@@ -16,8 +16,8 @@ const exhbs  = require('express-handlebars')
 const session = require('express-session')
 const zip = require('express-zip')
 const markdown = require('markdown').markdown
-const configLocal = fs.existsSync('./config-local.js')
-const cfg = require(configLocal ? './config-local' : './config')
+const configExist = fs.existsSync('./config.js')
+const cfg = require(configExist ? './config' : './config-example')
 const packageConfig = require('./package.json')
 
 const terrariaDir = process.env.WORKDIR || cfg.terrariaDir
@@ -284,7 +284,7 @@ ex.get('/logs', checkAuth, (req, res) => {
 })
 
 ex.get('/config', checkAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, configLocal ? 'config-local.js' : 'config.js'))
+  res.sendFile(path.join(__dirname, configExist ? 'config.js' : 'config-example.js'))
 })
 
 ex.get('/help', (req, res) => {

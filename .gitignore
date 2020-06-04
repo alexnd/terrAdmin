@@ -1,4 +1,4 @@
-config-local.js
+config.js
 server.cfg
 .DS_Store
 node_modules
