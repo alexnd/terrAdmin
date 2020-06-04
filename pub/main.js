@@ -75,8 +75,12 @@
     });
     $('#a_restartapp').click(function (event) {
       event.preventDefault();
-      $('#confirm_restartapp').modal('show')
-/*
+      $('#confirm_restartapp').modal('show');
+      return false;
+    });
+    $('#a_restartapp_do').click(function (event) {
+      event.preventDefault();
+      $('#confirm_restartapp').modal('hide');
       $.get('/restartapp').then(function (res) {
         $('body').html('<div class="container"><div class="row justify-content-center align-items-center" style="height:100vh">Restarting application...</div></div>');
         setTimeout(function() {
@@ -85,7 +89,6 @@
       }).catch(function (err) {
         console.log('*[error]', err);
       });
-      */
       return false;
     });
     $('#a_load_cfg').click(function (event) {
@@ -106,6 +109,10 @@
       return false;
     });
     $('#a_save_cfgapp').click(function (event) {
+      event.preventDefault();
+      return false;
+    });
+    $('#a_changelog').click(function (event) {
       event.preventDefault();
       return false;
     });

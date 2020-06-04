@@ -121,6 +121,9 @@
           <div class="tab-pane fade p-3" id="logs" role="tabpanel" aria-labelledby="logs-tab">
             <h5 class="card-title">
               Logs
+              <a href="#" id="a_changelog" title="Search for another logfile">
+                <i class="icon icon-search">&nbsp;</i>
+              </a>
             </h5>
             <div class="card-text h-100 scrollable-content">
               <pre id="logs-content"></pre>
@@ -137,7 +140,7 @@
               </a>
               <span style="margin-left:10px">
                 <a href="https://terraria.gamepedia.com/Terraria_Wiki" class="btn btn-info" target="_blank">
-                  <i class="icon icon-search">&nbsp;</i>
+                  <i class="icon icon-info">&nbsp;</i>
                   Terraria Wiki
                 </a>
               </span>
@@ -154,15 +157,23 @@
     </div>
   </div>
 </div>
+
 <div class="modal" tabindex="-1" role="dialog" id="confirm_restartapp">
   <div class="modal-dialog" role="document">
-    <div class="modal-body">
-      <h5>Confirmation</h5>
-      <p>Really reload app? Running server will drop.</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-      <button type="button" class="btn btn-primary">Reload</button>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Really restart terrAdmin? Running game server will drop.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="a_restartapp_do">Restart</button>
+      </div>
     </div>
   </div>
 </div>
