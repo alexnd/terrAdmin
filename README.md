@@ -21,8 +21,9 @@ This application expose Terraria/tShock things to user allowing control game ser
 
 - [Terraria.org](https://terraria.org)
 - [Terraria Server](https://terraria.gamepedia.com/Server)
+- [TShock]https://github.com/Pryaxis/TShock
+- [TShock Releases](https://github.com/Pryaxis/TShock/releases)
 - [Installing Tshock on Mac](https://tshock.co/xf/index.php?threads/installing-tshock-on-mac-os-x-its-possible.2110)
-- [TShock](https://github.com/Pryaxis/TShock/releases/tag/v4.4.0-pre8)
 - [TShock command line parameters](https://tshock.readme.io/docs/command-line-parameters)
 
 ## Barebone scenario to run Terraria server
