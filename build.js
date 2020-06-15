@@ -35,8 +35,9 @@ var deps = [
     path: 'bootstrap/dist/css',
     files: [
       'bootstrap.css',
+      'bootstrap.min.css',
       'bootstrap.css.map',
-      'bootstrap.min.css'
+      'bootstrap.min.css.map'
     ]
   }
 ];

@@ -11,6 +11,7 @@
     logs: _logs,
     help: _help
   };
+  var dataConfig = ''
   var $update = function() {
     $.getJSON('/auth').then(function (res) {
       if (res.user) {
@@ -93,8 +94,9 @@
     });
     $('#a_load_cfg').click(function (event) {
       event.preventDefault();
-      $.get('/loadcfg').then(function (res) {
-        console.log(res)
+      $.get('/config').then(function (res) {
+        dataConfig = res;
+        $('#config-content').val(res);
       }).catch(function (err) {
         console.log('*[error]', err);
       });
@@ -102,14 +104,39 @@
     });
     $('#a_save_cfg').click(function (event) {
       event.preventDefault();
+      var v = $('#config-content').val();
+      if (v) {
+        $.post('/config', { config: v })
+          .done(function (res) {
+            _status();
+          })
+          .fail(function (err) {
+            console.log('*[error]', err);
+          });
+      }
       return false;
     });
     $('#a_load_cfgapp').click(function (event) {
       event.preventDefault();
+      $.get('/configapp').then(function (res) {
+        dataConfigApp = res;
+        $('#app-config-content').val(res);
+      }).catch(function (err) {
+        console.log('*[error]', err);
+      });
       return false;
     });
     $('#a_save_cfgapp').click(function (event) {
       event.preventDefault();
+      var v = $('#app-config-content').val();
+      if (v) {
+        $.post('/configapp', { configapp: v })
+          .done(function (res) {
+          })
+          .fail(function (err) {
+            console.log('*[error]', err);
+          });
+      }
       return false;
     });
     $('#a_changelog').click(function (event) {
@@ -154,21 +181,22 @@
   }
   
   function _config() {
-    var content = $('#app-config-content').html();
+    var content = $('#app-config-content').val();
     if (content === '') {
-      $.get('/config').then(function (res) {
-        $('#app-config-content').html(res);
+      $.get('/configapp').then(function (res) {
+        dataConfig = res
+        $('#app-config-content').val(res);
       }).catch(function (err) {
         console.log('*[error]', err);
       });
     }
     if (config) {
-      $('#config-content').html(config);
+      $('#config-content').val(config);
       return;
     }
     _status(function(res) {
       config = res.configFile;
-      $('#config-content').html(config);
+      $('#config-content').val(config);
       setTimeout(function() { config = null; }, 60000);
     })
   }

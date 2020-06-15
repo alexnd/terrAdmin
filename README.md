@@ -30,16 +30,29 @@ This application expose Terraria/tShock things to user allowing control game ser
 
 ### Linux
 
+Setup .net runtime:
 ```
 sudo apt install mono-runtime -y
+```
+
+Crearte shell script `server.sh`:
+```
+#!/bin/sh
 mono ./TerrariaServer/1405/Linux/TerrariaServer.exe -config ./server.cfg
+```
+
+Add execute privilegies to script:
+```
+chmod +x ./server.sh
 ```
 
 ### Mac
 
 [Install Mono for Mac](https://www.mono-project.com/docs/getting-started/install/mac/)
 
+Shell script `server.sh`
 ```
+#!/bin/sh
 mono ./TerrariaServer/1405/Mac/Terraria\ Server.app/Contents/MacOS/TerrariaServer.exe -config ./server.cfg
 ```
 

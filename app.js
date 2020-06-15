@@ -300,10 +300,39 @@ ex.get('/logfiles', checkAuth, (req, res) => {
   })
 })
 
+ex.get('/configapp', checkAuth, (req, res) => {
+  res.set('Content-Type', 'text/plain')
+  res.sendFile(path.join(__dirname, configExist ? 'config.js' : 'config-example.js'))
+})
 
+ex.post('/configapp', checkAuth, (req, res) => {
+  if (req.body.configapp) {
+    fs.writeFileSync(
+      path.join(__dirname, configExist ? 'config.js' : 'config-example.js'),
+      req.body.configapp
+    )
+    res.send('DONE')
+  } else {
+    res.send('FAIL')
+  }
+})
 
 ex.get('/config', checkAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, configExist ? 'config.js' : 'config-example.js'))
+  res.set('Content-Type', 'text/plain')
+  res.sendFile(path.join(__dirname, configFile))
+})
+
+ex.post('/config', checkAuth, (req, res) => {
+  if (req.body.config) {
+    fs.writeFileSync(
+      path.join(__dirname, configFile),
+      req.body.config
+    )
+    parseTerrariaConfig()
+    res.send('DONE')
+  } else {
+    res.send('FAIL')
+  }
 })
 
 ex.get('/help', (req, res) => {
@@ -338,7 +367,7 @@ function spawnTerraria() {
   const args = [
     terrariaExe,
     '-config',
-    './server.cfg',
+    `./${configFile}`,
     '-logfile',
     './logs',
     '-logclear',
