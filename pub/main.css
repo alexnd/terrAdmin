@@ -58,6 +58,11 @@
 .icon-status:before { content: '\f0e4'; } /* '' */
 .icon-question:before { content: '\f29c'; } /* '' */
 
+.login-form {
+  width: 340px;
+  margin: 50px auto;
+  font-size: 15px;
+}
 .scrollable-content {
   max-height: 600px;
   overflow-y: scroll;
