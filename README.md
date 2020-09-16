@@ -73,11 +73,4 @@ docker run terradmin
 
 ## TODO
 
-- Save/load configs
-- Logfiles selector
-- Load/stash/unstash for selected map
-- Postinstall generation of .bat/.sh (for barebone run)
-- Public page on [github pages](https://pages.github.com/) and site button on help tab
-- Autogenerate world feature (it possible, was tested, proven)
-- PM2 instructions to setup and keep project running on dedicated pc
 - Separate dockers for terrAdmin and game server, resolve admin-server control
