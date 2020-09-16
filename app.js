@@ -14,6 +14,7 @@ const bodyParser = require('body-parser')
 const exhbs  = require('express-handlebars')
 const session = require('express-session')
 const zip = require('express-zip')
+const bcrypt = require('bcrypt')
 const markdown = require('markdown').markdown
 const configExist = fs.existsSync('./config.js')
 const cfg = require(configExist ? './config' : './config-example')
