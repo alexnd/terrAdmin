@@ -13,10 +13,11 @@ TShock*
 !/Worlds/.gitkeep
 /logs/*
 !/logs/.gitkeep
-*.sh
-*.bat
+#*.sh
+#*.bat
 
 # Log files
+ServerLog.txt
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

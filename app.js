@@ -307,11 +307,13 @@ ex.get('/configapp', checkAuth, (req, res) => {
 })
 
 ex.post('/configapp', checkAuth, (req, res) => {
+  const configExist = fs.existsSync(path.resolve('./config.js'))
   if (req.body.configapp) {
     fs.writeFileSync(
       path.join(__dirname, configExist ? 'config.js' : 'config-example.js'),
       req.body.configapp
     )
+    cfg = require(configExist ? './config' : './config-example')
     res.send('DONE')
   } else {
     res.send('FAIL')
