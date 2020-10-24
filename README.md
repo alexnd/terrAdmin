@@ -38,7 +38,7 @@ sudo apt install mono-runtime -y
 Crearte shell script `server.sh`:
 ```
 #!/bin/sh
-mono ./TerrariaServer/1405/Linux/TerrariaServer.exe -config ./server.cfg
+mono ./TerrariaServer/1411/Linux/TerrariaServer.exe -config ./server.cfg
 ```
 
 Add execute privilegies to script:
@@ -61,7 +61,7 @@ mono ./TerrariaServer/1405/Mac/Terraria\ Server.app/Contents/MacOS/TerrariaServe
 Create runnable `.bat` file with next content:
 
 ```
-TerrariaServer\1405\Windows\TerrariaServer.exe -config server.cfg
+TerrariaServer\1411\Windows\TerrariaServer.exe -config server.cfg
 ```
 
 ## Docker way (under construction)

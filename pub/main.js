@@ -36,11 +36,18 @@
         }
       }
     }
+    console.log('*initdata', $initdata);
     if (!$initdata.user) return;
     setTimeout(function() {
-      _status();
+      _status(update);
     }, 100);
     setTimeout($update, 60000);
+    $('#a_info').click(function (event) {
+      event.preventDefault();
+      $('#a_info').hide();
+      $('#c_info').show();
+      return false;
+    });
     $('#a_start').click(function (event) {
       event.preventDefault();
       $.get('/start').then(function (res) {
@@ -108,7 +115,7 @@
       if (v) {
         $.post('/config', { config: v })
           .done(function (res) {
-            _status();
+            updateStatus();
           })
           .fail(function (err) {
             console.log('*[error]', err);
@@ -157,25 +164,41 @@
     });
   })
 
+  function update() {
+    setTimeout(function() {
+      updateStatus();
+      update();
+    }, 10000);
+  }
+
   function _status(cb) {
-    if (status) return;
+    updateStatus(cb);
+  }
+
+  function updateStatus(cb) {
     $('#world_name').text('');
     $('#world_label').hide();
-    $.getJSON('/stats').then(function (res) {
+    $.getJSON('/stats' + (cb ? '' : '?mode=tiny'))
+    .then(function (res) {
       status = res;
       config = res.configFile;
       $('#c_version').text(res.version);
       $('#world_name').text(res.world);
       $('#world_label').show();
+      var info = {
+        isTshock: res.isTshock,
+        authCode: res.authCode
+      };
+      $('#c_info').html(JSON.stringify(info, null, 2));
       if (res.worlds && res.worlds.length) {
         $('#worldslist').empty();
         res.worlds.forEach(function(wld) {
           $('#worldslist').append('<li>' + wld + '</li>');
         });
       }
-      setTimeout(function() { status = null; }, 10000);
       cb && cb(res);
-    }).catch(function (err) {
+    })
+    .catch(function (err) {
       console.log('*[error]', err);
     })
   }

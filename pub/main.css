@@ -90,3 +90,11 @@ code {
   color: green !important;
   background-color: lightyellow !important;
 }
+#c_info {
+  display: inline-block;
+  font-size: 10px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 2px;
+  background: #efefef;
+}

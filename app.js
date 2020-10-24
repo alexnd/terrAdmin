@@ -34,6 +34,7 @@ var logTimestamp = null
 var authorizations = {}
 var configFileData = ''
 var logFile = ''
+var isTshock = false
 
 const isWin = /^win/i.test(os.platform())
 const isMac = /^dar/i.test(os.platform())
@@ -239,21 +240,31 @@ ex.get('/backup', checkAuth, (req, res) => {
 })
 
 ex.get('/stats', checkAuth, (req, res) => {
-  listTerrariaWorlds((err, worlds) => {
-    if (err) {
-      res.json({error: err})
-    } else {
-      res.json({
-        version: packageConfig.version,
-        status: tPs,
-        authCode: authCode,
-        world: worldFile,
-        worldPath: path.join(__dirname, terrariaDir),
-        worlds: worlds,
-        configFile: configFileData
-      })
-    }
-  })
+  if (req.query.mode && req.query.mode === 'tiny') {
+    res.json({
+      status: !!tPs,
+      isTshock,
+      authCode,
+      world: worldFile,
+    })
+  } else {
+    listTerrariaWorlds((err, worlds) => {
+      if (err) {
+        res.json({error: err})
+      } else {
+        res.json({
+          status: !!tPs,
+          isTshock,
+          authCode,
+          world: worldFile,
+          worlds,
+          worldPath: path.join(__dirname, terrariaDir),
+          version: packageConfig.version,
+          configFile: configFileData
+        })
+      }
+    })
+  }
 })
 
 ex.get('/logs', checkAuth, (req, res) => {
@@ -365,6 +376,7 @@ httpServer.listen(port, addr, () => {
 
 function spawnTerraria() {
   // relative path: path.relative(path.join(__dirname, terrariaDir), path.join(__dirname, configFile))
+  isTshock = false
   const exePath = path.relative(__dirname, path.join(__dirname, terrariaDir, terrariaExe))
   console.log('*exePath', exePath)
   const args = [
@@ -392,7 +404,10 @@ function spawnTerraria() {
   ch.unref()
   ch.stdout.on('data', data => {
     const s = data.toString()
-    const m = s.match(/join the game and type \/auth (\d+)/i)
+    if (s.match(/welcome to tshock/i)) {
+      isTshock = true
+    }
+    const m = s.match(/join the game and type \/setup (\d+)/i)
     if (m) {
       authCode = m[1]
     }
